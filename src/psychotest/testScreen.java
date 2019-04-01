@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +25,11 @@ public class testScreen extends javax.swing.JFrame {
         } catch (AWTException ex) {
             Logger.getLogger(testScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    static void mousePosSave(){
+        System.out.println(MouseInfo.getPointerInfo().getLocation().getX());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +73,14 @@ public class testScreen extends javax.swing.JFrame {
         x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         y =(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         mouseToStart();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                mousePosSave();
+            }
+        }, 0,50);
+        
         
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -75,7 +90,6 @@ public class testScreen extends javax.swing.JFrame {
                 test.setPreferredSize(new Dimension(x,y));
                 test.pack();
                 test.setLocationRelativeTo(null);
-
                 test.setVisible(true);
                 
             }
