@@ -2,7 +2,6 @@ package psychotest;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -11,11 +10,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.awt.RepaintArea;
 
 public class testScreen extends javax.swing.JFrame {
     
-    static boolean paBool = false;
     public static testScreen test;
     public static ArrayList<Integer> mouseX = new ArrayList<>();
     public static ArrayList<Integer> mouseY = new ArrayList<>();
@@ -29,7 +26,7 @@ public class testScreen extends javax.swing.JFrame {
     static void mouseToStart(){
         try {
             
-            new Robot().mouseMove(0, y);
+            new Robot().mouseMove(20, y-20);
         } catch (AWTException ex) {
             Logger.getLogger(testScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,19 +35,6 @@ public class testScreen extends javax.swing.JFrame {
     static void mousePosSave(){
         mouseX.add((int) MouseInfo.getPointerInfo().getLocation().getX());
         mouseY.add((int) MouseInfo.getPointerInfo().getLocation().getY());
-    }
-    
-    public void paintComponents(Graphics g){
-        super.paintComponents(g);
-        System.out.println("Deneme");
-        if(paBool){
-            System.out.println("Hey");
-            for(int i=0;i<mouseX.size()-1;i++){
-                g.drawLine(mouseX.get(i), mouseY.get(i), mouseX.get(i+1), mouseY.get(i+1));
-            }
-        }
-        
-        
     }
     
     
@@ -102,13 +86,11 @@ public class testScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEvetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvetActionPerformed
-        paBool = true;
-        test.repaint();
+        WriteFile.write(mouseX, mouseY);
     }//GEN-LAST:event_btnEvetActionPerformed
 
     private void btnHayirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHayirActionPerformed
-        paBool = true;
-        test.repaint();
+        WriteFile.write(mouseX, mouseY);
     }//GEN-LAST:event_btnHayirActionPerformed
 
     public static void main(String args[]) {
@@ -129,7 +111,7 @@ public class testScreen extends javax.swing.JFrame {
             public void run() {
                 test = new testScreen();
                 test.setDefaultCloseOperation(testScreen.EXIT_ON_CLOSE);
-                test.setPreferredSize(new Dimension(x,y));
+                test.setPreferredSize(new Dimension(x-20,y-20));
                 test.pack();
                 test.setLocationRelativeTo(null);
                 test.setVisible(true);
