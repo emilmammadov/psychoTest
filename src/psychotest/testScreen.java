@@ -2,15 +2,23 @@ package psychotest;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.awt.RepaintArea;
 
 public class testScreen extends javax.swing.JFrame {
+    
+    static boolean paBool = false;
+    public static testScreen test;
+    public static ArrayList<Integer> mouseX = new ArrayList<>();
+    public static ArrayList<Integer> mouseY = new ArrayList<>();
 
     public static int x,y;
     
@@ -28,22 +36,46 @@ public class testScreen extends javax.swing.JFrame {
     }
     
     static void mousePosSave(){
-        System.out.println(MouseInfo.getPointerInfo().getLocation().getX());
+        mouseX.add((int) MouseInfo.getPointerInfo().getLocation().getX());
+        mouseY.add((int) MouseInfo.getPointerInfo().getLocation().getY());
+    }
+    
+    public void paintComponents(Graphics g){
+        super.paintComponents(g);
+        System.out.println("Deneme");
+        if(paBool){
+            System.out.println("Hey");
+            for(int i=0;i<mouseX.size()-1;i++){
+                g.drawLine(mouseX.get(i), mouseY.get(i), mouseX.get(i+1), mouseY.get(i+1));
+            }
+        }
+        
         
     }
-
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEvet = new javax.swing.JButton();
+        btnHayir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("HAYIR");
+        btnEvet.setText("EVET");
+        btnEvet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvetActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("EVET");
+        btnHayir.setText("HAYIR");
+        btnHayir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHayirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,9 +83,9 @@ public class testScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnEvet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                .addComponent(btnHayir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -61,13 +93,23 @@ public class testScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(262, Short.MAX_VALUE))
+                    .addComponent(btnHayir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEvet))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEvetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvetActionPerformed
+        paBool = true;
+        test.repaint();
+    }//GEN-LAST:event_btnEvetActionPerformed
+
+    private void btnHayirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHayirActionPerformed
+        paBool = true;
+        test.repaint();
+    }//GEN-LAST:event_btnHayirActionPerformed
 
     public static void main(String args[]) {
         x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -85,19 +127,18 @@ public class testScreen extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                testScreen test = new testScreen();
+                test = new testScreen();
                 test.setDefaultCloseOperation(testScreen.EXIT_ON_CLOSE);
                 test.setPreferredSize(new Dimension(x,y));
                 test.pack();
                 test.setLocationRelativeTo(null);
                 test.setVisible(true);
-                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEvet;
+    private javax.swing.JButton btnHayir;
     // End of variables declaration//GEN-END:variables
 }
