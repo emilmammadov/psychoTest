@@ -87,10 +87,16 @@ public class testScreen extends javax.swing.JFrame {
 
     private void btnEvetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvetActionPerformed
         WriteFile.write(mouseX, mouseY);
+        mouseX.clear();
+        mouseY.clear();
+        mouseToStart();
     }//GEN-LAST:event_btnEvetActionPerformed
 
     private void btnHayirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHayirActionPerformed
         WriteFile.write(mouseX, mouseY);
+        mouseX.clear();
+        mouseY.clear();
+        mouseToStart();
     }//GEN-LAST:event_btnHayirActionPerformed
 
     public static void main(String args[]) {
