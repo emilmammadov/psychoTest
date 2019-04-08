@@ -16,7 +16,6 @@ public class testScreen extends javax.swing.JFrame {
     public static testScreen test;
     public static ArrayList<Integer> mouseX = new ArrayList<>();
     public static ArrayList<Integer> mouseY = new ArrayList<>();
-
     public static int x,y;
     
     public testScreen() {
