@@ -11,14 +11,14 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class testScreen extends javax.swing.JFrame {
+public class TestScreen extends javax.swing.JFrame {
     
-    public static testScreen test;
+    public static TestScreen test;
     public static ArrayList<Integer> mouseX = new ArrayList<>();
     public static ArrayList<Integer> mouseY = new ArrayList<>();
     public static int x,y;
     
-    public testScreen() {
+    public TestScreen() {
         initComponents();
     }
     
@@ -27,7 +27,7 @@ public class testScreen extends javax.swing.JFrame {
             
             new Robot().mouseMove(20, y-20);
         } catch (AWTException ex) {
-            Logger.getLogger(testScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -98,14 +98,14 @@ public class testScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEvetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvetActionPerformed
-        WriteFile.write(mouseX, mouseY);
+        ReadWriteFile.write(mouseX, mouseY);
         mouseX.clear();
         mouseY.clear();
         mouseToStart();
     }//GEN-LAST:event_btnEvetActionPerformed
 
     private void btnHayirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHayirActionPerformed
-        WriteFile.write(mouseX, mouseY);
+        ReadWriteFile.write(mouseX, mouseY);
         mouseX.clear();
         mouseY.clear();
         mouseToStart();
@@ -127,8 +127,8 @@ public class testScreen extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                test = new testScreen();
-                test.setDefaultCloseOperation(testScreen.EXIT_ON_CLOSE);
+                test = new TestScreen();
+                test.setDefaultCloseOperation(TestScreen.EXIT_ON_CLOSE);
                 test.setPreferredSize(new Dimension(x-20,y-20));
                 test.pack();
                 test.setLocationRelativeTo(null);
