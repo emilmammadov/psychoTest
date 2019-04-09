@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import static psychotest.ReadWriteFile.path;
 
 public class Draw extends javax.swing.JFrame {
-    
-    static String path = "deneme.txt";
-    static ArrayList<String> txtArray = new ArrayList<>();
 
     public Draw() {
         initComponents();
@@ -39,15 +36,9 @@ public class Draw extends javax.swing.JFrame {
 
     public static void main(String args[]) throws FileNotFoundException, IOException {
         
-        String line = "";
-            File file = new File(path);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader br = new BufferedReader(fileReader);
-            while((line = br.readLine()) != null){
-                txtArray.add(line);
-            }
         
-        ReadWriteFile.read(1);
+        
+        //ReadWriteFile.read(1);
         
 
         /* Create and display the form */
